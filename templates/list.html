@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <!-- page start -->
+    {% include 'notification.html' %}
+    <div class="relative bg-gradient-to-bl from-blue-500 via-transparent dark:from-blue-950 dark:via-transparent">
+        <div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+            <!-- Grid -->
+            <div class="grid items-center md:grid-cols-2 gap-8 lg:gap-12">
+                <!-- End Col -->
+                <div>
+                    <!-- table of audio files -->
+
+                    {% for item in audio_files %}
+                    <div class="bg-white dark:bg-neutral-800 shadow-lg rounded-lg p-6">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <img src="https://img.icons8.com/ios/50/000000/audio-wave.png" class="w-10 h-10"
+                                    alt="audio icon">
+                                <div class="ml-3">
+                                    <h2 class="text-lg font-semibold text-gray-800 dark:text-neutral-200">{{
+                                        item['audio_name'] }}</h2>
+                                    <p class="text-sm text-gray-500 dark:text-neutral-400">{{ item['audio_file'] }}</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <a href="/convert/{{ item['id'] }}"
+                                    class="text-blue-600 dark:text-blue-500 hover:underline">Convert</a>
+                                <a href="/delete/{{ item['id'] }}"
+                                    class="text-red-600 dark:text-red-500 hover:underline ml-4">
+                                    Delete
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                    <!-- end table -->
+                </div>
+                <!-- End Col -->
+                <!-- End register form -->
+            </div>
+            <!-- page End -->
+</body>
+
+</html>

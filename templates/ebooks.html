@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <!-- page start -->
+    {% include 'notification.html' %}
+    <div class="relative bg-gradient-to-bl from-blue-500 via-transparent dark:from-blue-950 dark:via-transparent">
+        <div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+            <!-- Grid -->
+
+            <!-- End Col -->
+            <div>
+                <!-- download pdf -->
+                <a href="{{file}}" download> Download the current file
+                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                        Download Ebook
+                    </button>
+                </a>
+            </div>
+            <div>
+                <h1 class="text-lg font-semibold text-gray-800 dark:text-neutral-800">
+                    View The Ebooks
+                </h1>
+                {% for item in audio_files %}
+                <h5>{{item.audio_name}}.pdf</h5> <a href="/static/output/{{item.audio_file.split('.').0}}.pdf">
+                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                        Download 
+                    </button>
+                </a>
+                {% endfor %}
+
+            </div>
+            <!-- End Col -->
+            <!-- End register form -->
+
+            <!-- page End -->
+</body>
+
+</html>

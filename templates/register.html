@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <!-- page start -->
+    {% include 'notification.html' %}
+    <div class="relative bg-gradient-to-bl from-blue-500 via-transparent dark:from-blue-950 dark:via-transparent">
+        <div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+        <!-- Grid -->
+        <div class="grid items-center md:grid-cols-2 gap-8 lg:gap-12">
+            <div>
+            <p class="inline-block text-xl font-medium bg-clip-text bg-gradient-to-l from-blue-600 to-violet-500 text-transparent dark:from-blue-400 dark:to-violet-400">
+                P2E: Podcast to Ebook Converter
+            </p>
+            <!-- Title -->
+            <div class="mt-4 md:mb-12 max-w-2xl">
+                <h1 class="mb-4 font-bold text-gray-800 text-4xl lg:text-5xl dark:text-neutral-200">
+                    Welcome to the Future of <span class="text-blue-600 dark:text-blue-500">Content Conversion!</span>
+                </h1>
+                <p class="text-gray-500 dark:text-neutral-400">
+                    Get ready to experience the seamless transformation of your favorite podcasts into beautifully organized eBooks. Whether you want to read on the go, search for specific topics, or simply enjoy your audio content in a new format, our platform makes it easy and intuitive. Create an account today and start converting your voice into written words in just a few clicks!"
+                </p>
+            </div>
+            <!-- End Title -->
+            </div>
+            <!-- End Col -->
+            <div>
+            <!-- Form -->
+            <form method="post">
+                <div class="lg:max-w-lg lg:mx-auto lg:me-0 ms-auto">
+                
+                {% for error in error_list %}
+                    {{error}}
+                {% endfor %}
+                    
+                <!-- Card -->
+                <div class="p-4 sm:p-9 flex flex-col bg-white rounded-2xl shadow-lg dark:bg-neutral-900">
+                    <div class="text-center">
+                    <h1 class="block text-2xl font-bold text-gray-800 dark:text-white">Start Converting Today</h1>
+                    <p class="mt-2 text-sm text-gray-600 dark:text-neutral-400">
+                        Already have an account?
+                        <a class="text-blue-600 decoration-2 hover:underline focus:outline-none focus:underline font-medium dark:text-blue-500" href="#">
+                        Sign in here
+                        </a>
+                    </p>
+                    </div>
+                    <div class="mt-5">
+                    <a href="/login" type="button" class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-80 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800 dark:focus:bg-neutral-800">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-check"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><polyline points="16 11 18 13 22 9"/></svg>
+                        Login
+                    </a>
+                    <div class="py-3 flex items-center text-xs text-gray-400 uppercase before:flex-1 before:border-t before:border-gray-200 before:me-6 after:flex-1 after:border-t after:border-gray-200 after:ms-6 dark:text-neutral-500 dark:before:border-neutral-700 dark:after:border-neutral-700">Or</div>
+                    <!--Register form start-->
+                    <p class="mt-1 mb-3 text-base italic text-black-900  dark:text-neutral-900">
+                        The incredible journey from Airwaves to Pages is waiting for you.
+                    </p>
+                        <div class="mb-4">
+                            <label for="hs-hero-name-2" class="block text-sm margin-top: 10px font-medium dark:text-white"><span class="sr-only">Full name</span></label>
+                            <input type="text" id="hs-hero-name-2" class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600" placeholder="Full name" name="username">
+                        </div>
+                        <div class="mb-4">
+                            <label for="hs-hero-email-2" class="block text-sm font-medium dark:text-white"><span class="sr-only">Email address</span></label>
+                            <input type="email" id="hs-hero-email-2" class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600" placeholder="Email address" name="email">
+                        </div>
+                        <div class="mb-4">
+                            <label for="hs-hero-password-2" class="block text-sm font-medium dark:text-white"><span class="sr-only">Password</span></label>
+                            <input type="password" id="hs-hero-password-2" class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600" placeholder="Password" name="password">
+                        </div>
+                        <div class="mb-4">
+                            <label for="hs-hero-password-2" class="block text-sm font-medium dark:text-white"><span class="sr-only">Confirm Password</span></label>
+                            <input type="password" id="hs-hero-password-2" class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600" placeholder="Confirm Password" name="confirmpass">
+                        </div>
+                    <div class="mt-5">
+                        <button type="submit" class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">Register Now</button>
+                    </div>
+                    </div>
+                </div>
+                <!-- End Card -->
+                </div>
+            </form>
+            <!-- End Form -->
+            </div>
+            <!-- End Col -->
+        <!-- End register form -->
+    </div>
+    <!-- page End -->
+</body>
+</html>
