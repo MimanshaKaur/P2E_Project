@@ -8,10 +8,11 @@
         margin: 10px;
     }
 </style>
+
 {% with messages = get_flashed_messages(with_categories=true) %}
 {% if messages %}
 {% for category, message in messages %}
-<div class="alert alert-{{category }} alert-dismissible fade show" role="alert">
+<div class="alert fixed top-[5%] right-2 z-[9999] w-[400px] mx-2 p-4 rounded-lg shadow-lg bg-{{ 'green-500' if category == 'success' else 'red-500' }} text-white" role="alert">
     {% if category == 'success' %}
     <strong>
         <i class="fas fa-check-circle"></i>

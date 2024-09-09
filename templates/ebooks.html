@@ -4,43 +4,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
+    <title>Download Ebooks</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body>
-    <!-- page start -->
+<body class="min-h-screen bg-gradient-to-bl from-blue-500 via-transparent dark:from-blue-950 dark:via-transparent flex items-center justify-center">
+
+    <!-- Notifications -->
     {% include 'notification.html' %}
-    <div class="relative bg-gradient-to-bl from-blue-500 via-transparent dark:from-blue-950 dark:via-transparent">
-        <div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
-            <!-- Grid -->
 
-            <!-- End Col -->
-            <div>
-                <!-- download pdf -->
-                <a href="{{file}}" download> Download the current file
-                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                        Download Ebook
+    <!-- Main Content -->
+    <div class="max-w-4xl w-full p-8 bg-white dark:bg-gray-800 shadow-lg rounded-lg">
+        <!-- Header -->
+        <h1 class="text-3xl font-bold text-gray-800 dark:text-white text-center mb-6">Download Your Ebooks</h1>
+
+        <!-- Download Section for Current File -->
+        <div class="flex justify-center mb-8">
+            <a href="{{file}}" download>
+                <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300">
+                    Download Current Ebook
+                </button>
+            </a>
+        </div>
+
+        <!-- Ebooks List -->
+        <h2 class="text-xl font-semibold text-gray-700 dark:text-gray-300 mb-4">Available Ebooks</h2>
+        <div class="space-y-4">
+            {% for item in audio_files %}
+            <div class="flex justify-between items-center bg-blue-100 dark:bg-gray-700 p-4 rounded-lg shadow-md">
+                <span class="text-lg text-gray-800 dark:text-white">{{ item.audio_name }}.pdf</span>
+                <a href="/static/output/{{item.audio_file.split('.').0}}.pdf" download>
+                    <button class="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300">
+                        Download
                     </button>
                 </a>
             </div>
-            <div>
-                <h1 class="text-lg font-semibold text-gray-800 dark:text-neutral-800">
-                    View The Ebooks
-                </h1>
-                {% for item in audio_files %}
-                <h5>{{item.audio_name}}.pdf</h5> <a href="/static/output/{{item.audio_file.split('.').0}}.pdf">
-                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                        Download 
-                    </button>
-                </a>
-                {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
 
-            </div>
-            <!-- End Col -->
-            <!-- End register form -->
-
-            <!-- page End -->
 </body>
 
 </html>
