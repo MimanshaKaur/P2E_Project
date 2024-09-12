@@ -1,27 +1,32 @@
-<nav class="navbar navbar-expand navbar-light bg-light d-flex">
-    <ul class="nav navbar-nav">
+<nav class="bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-between p-4 shadow-lg">
+    <!-- Logo Section -->
+    <div class="flex items-center">
+        <img src="/path-to-your-logo.png" alt="Logo" class="h-10 w-10 mr-4"> <!-- Adjust logo size here -->
+        <a href="/" class="text-white font-bold text-xl">BrandName</a>
+    </div>
 
+    <!-- Navigation Links -->
+    <ul class="flex space-x-6">
         {% if session.is_logged_in %}
         <li class="nav-item">
-            <a class="nav-link" href="/upload">Upload</a>
+            <a class="text-white font-semibold hover:bg-white hover:text-blue-500 px-4 py-2 rounded transition duration-300" href="/upload">Upload</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/ebooks">Ebooks</a>
+            <a class="text-white font-semibold hover:bg-white hover:text-blue-500 px-4 py-2 rounded transition duration-300" href="/ebooks">Ebooks</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/list">List Audio</a>
+            <a class="text-white font-semibold hover:bg-white hover:text-blue-500 px-4 py-2 rounded transition duration-300" href="/list">List Audio</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/logout">Logout</a>
+            <a class="text-white font-semibold hover:bg-white hover:text-blue-500 px-4 py-2 rounded transition duration-300" href="/logout">Logout</a>
         </li>
         {% else %}
         <li class="nav-item">
-            <a class="nav-link" href="/register">Register</a>
+            <a class="text-white font-semibold hover:bg-white hover:text-blue-500 px-4 py-2 rounded transition duration-300" href="/register">Register</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/login">Login</a>
+            <a class="text-white font-semibold hover:bg-white hover:text-blue-500 px-4 py-2 rounded transition duration-300" href="/login">Login</a>
         </li>
         {% endif %}
-
     </ul>
 </nav>
