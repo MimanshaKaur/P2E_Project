@@ -2,30 +2,29 @@
     <!-- Logo Section -->
     <div class="flex items-center">
         <img src="static\p2e_logo.png" class="h-10 w-10 mr-4" alt="Logo" > <!-- Adjust logo size here -->
-        <a href="/" class="text-white font-bold text-xl" >P2E: Podcast to Ebook Converter</a>
+        <a href="/" class="bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-500 font-bold text-2xl" >P2E: Podcast to Ebook Converter</a>
     </div>
-
     <!-- Navigation Links -->
     <ul class="flex space-x-6">
         {% if session.is_logged_in %}
         <li class="nav-item">
-            <a class="text-white font-semibold hover:bg-white hover:text-blue-500 px-4 py-2 rounded transition duration-300" href="/upload">Upload</a>
+            <a class="text-white text-xl font-semibold hover:bg-transparent hover:text-yellow-400 px-4 py-2 rounded transition duration-300" href="/upload">Upload</a>
         </li>
         <li class="nav-item">
-            <a class="text-white font-semibold hover:bg-white hover:text-blue-500 px-4 py-2 rounded transition duration-300" href="/ebooks">Ebooks</a>
+            <a class="text-white text-xl font-semibold hover:bg-transparent hover:text-yellow-400 px-4 py-2 rounded transition duration-300" href="/ebooks">Ebooks</a>
         </li>
         <li class="nav-item">
-            <a class="text-white font-semibold hover:bg-white hover:text-blue-500 px-4 py-2 rounded transition duration-300" href="/list">List Audio</a>
+            <a class="text-white text-xl font-semibold hover:bg-transparent hover:text-yellow-400 px-4 py-2 rounded transition duration-300" href="/list">List Audio</a>
         </li>
         <li class="nav-item">
-            <a class="text-white font-semibold hover:bg-white hover:text-blue-500 px-4 py-2 rounded transition duration-300" href="/logout">Logout</a>
+            <a class="text-white text-xl font-semibold hover:bg-transparent hover:text-yellow-400 px-4 py-2 rounded transition duration-300" href="/logout">Logout</a>
         </li>
         {% else %}
         <li class="nav-item">
-            <a class="text-white font-semibold hover:bg-white hover:text-blue-500 px-4 py-2 rounded transition duration-300" href="/register">Register</a>
+            <a class="text-white text-xl font-semibold hover:bg-transparent hover:text-yellow-400 px-4 py-2 rounded transition duration-300" href="/register">Register</a>
         </li>
         <li class="nav-item">
-            <a class="text-white font-semibold hover:bg-white hover:text-blue-500 px-4 py-2 rounded transition duration-300" href="/login">Login</a>
+            <a class="text-white text-xl font-semibold hover:bg-transparent hover:text-yellow-400 px-4 py-2 rounded transition duration-300" href="/login">Login</a>
         </li>
         {% endif %}
     </ul>
