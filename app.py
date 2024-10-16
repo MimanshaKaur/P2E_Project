@@ -153,7 +153,7 @@ def upload():
             flash('Audio file uploaded successfully', 'success')
         else:
             flash('Please fill all the fields', 'warning')
-    return render_template('form.html')
+    return render_template('upload.html')
 
 @app.route('/list', methods=['GET','POST'])
 def convert():
