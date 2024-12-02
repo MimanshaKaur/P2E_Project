@@ -116,7 +116,7 @@ def register():
             if len(email) < 11 or '@' not in email:
                 errors.append("Email is invalid")
             if len(pwd) < 6:
-                errors.append("Password should be 6 or more chars")
+                errors.append("Password should have more than 6")
             if pwd != cpwd:
                 errors.append("passwords do not match")
             if len(errors) == 0:
@@ -134,26 +134,34 @@ def register():
 def logout():
     destroy_login_session()
     flash('You are logged out','success')
-    return redirect('/')    
+    return redirect('/')
 
-@app.route('/upload', methods=['GET','POST'])
+@app.route('/upload', methods=['GET', 'POST'])
 def upload():
     if 'is_logged_in' not in session:
         flash('You need to login first', 'warning')
         return redirect('/login')
+
     if request.method == 'POST':
         audio_name = request.form.get('audio_name')
         audio_file = request.files.get('audio_file')
-        if audio_name and audio_file:
-            filename = secure_filename(audio_file.filename)
-            audio_file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            audio = AudioUpload(audio_name=audio_name, audio_file=filename)
-            db.session.add(audio)
-            db.session.commit()
-            flash('Audio file uploaded successfully', 'success')
-        else:
+
+        if not audio_name or not audio_file:
             flash('Please fill all the fields', 'warning')
+            return render_template('upload.html')  # Stay on the upload page
+
+        # Save the file and add it to the database
+        filename = secure_filename(audio_file.filename)
+        audio_file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        audio = AudioUpload(audio_name=audio_name, audio_file=filename)
+        db.session.add(audio)
+        db.session.commit()
+
+        flash('Audio file uploaded successfully', 'success')
+        return redirect(url_for('convert'))  # Redirect to the list page after success
+
     return render_template('upload.html')
+
 
 @app.route('/list', methods=['GET','POST'])
 def convert():

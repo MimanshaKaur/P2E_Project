@@ -35,10 +35,10 @@
                             Upload Your Audio, Watch It Transform!<br> <span class="text-3xl text-blue-400">One Click to Turn Sound into Stories!</span>
                         </h1>
                     </div>
-                    <!-- End Title -->  
+                    <!-- End Title -->
                     <!-- Form -->
-                     {% include 'notification.html' %}
-                    <form method="post" action="./C:/Users/Mimansha/OneDrive/Documents/GitHub/P2E_project/templates/list.html" enctype="multipart/form-data">
+                    {% include 'notification.html' %}
+                    <form method="post"  enctype="multipart/form-data">
                         <div
                             class="mx-auto max-w-2xl sm:flex sm:space-x-3 p-3 bg-white border rounded-lg shadow-lg shadow-gray-100">
                             <div class="w-full pb-2 sm:pb-0">
@@ -56,7 +56,7 @@
                                     placeholder="Select File" accept=".mp3">
                             </div>
                             <div class="whitespace-nowrap pt-2 sm:pt-0 grid sm:block">
-                                    <button type="submit"
+                                    <button
                                         class="py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
                                         >
                                         Upload
