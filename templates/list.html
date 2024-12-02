@@ -1,60 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<title>P2E: Audio List</title>
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+
+<link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css"/>
+<!--Replace with your tailwind.css once created-->
+<link href="https://unpkg.com/@tailwindcss/custom-forms/dist/custom-forms.min.css" rel="stylesheet" />
+
+<style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+
+    html {
+    font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    }
+</style>
 </head>
+<body class="leading-normal tracking-normal text-indigo-400 m-6 bg-cover bg-fixed" style="background-image: url('https://raw.githubusercontent.com/tailwindtoolbox/Rainblur-Landing-Page/refs/heads/main/header.png');">
+    {% include 'menu.html' %}
+    <!-- Hero -->
+                    <!-- End Title -->
+                    <!-- Form -->
+                    {% include 'notification.html' %}
+                    <div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+                        <!-- Grid layout for content -->
+                        <div class="grid md:grid-cols-2 gap-8 lg:gap-12 items-start">
 
-<body class="bg-gradient-to-bl from-blue-500 via-blue-200 to-purple-500 dark:from-blue-950 dark:via-transparent min-h-screen flex items-center justify-center">
+                            <!-- Audio Files Section -->
+                            <div style=" background: transparent; border: 2px solid white;" class="dark:bg-neutral-800 shadow-lg rounded-lg p-8 lg:p-10">
+                                <h1 style="color: white;" class="text-2xl font-bold text-gray-800 dark:text-white mb-6">Your Audio Files</h1>
 
-    <!-- Notification section -->
-    {% include 'notification.html' %}
-    
-
-    <div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
-        <!-- Grid layout for content -->
-        <div class="grid md:grid-cols-2 gap-8 lg:gap-12 items-start">
-
-            <!-- Audio Files Section -->
-            <div class="bg-white dark:bg-neutral-800 shadow-lg rounded-lg p-8 lg:p-10">
-                <h1 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">Your Audio Files</h1>
-
-                <!-- Loop through the audio files -->
-                {% for item in audio_files %}
-                <div class="bg-white dark:bg-neutral-700 shadow-md rounded-lg p-6 mb-4">
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center">
-                            <img src="https://img.icons8.com/ios/50/000000/audio-wave.png" class="w-12 h-12"
-                                alt="audio icon">
-                            <div class="ml-4">
-                                <h2 class="text-lg font-semibold text-gray-900 dark:text-neutral-200">{{ item['audio_name'] }}</h2>
-                                <p class="text-sm text-gray-500 dark:text-neutral-400">{{ item['audio_file'] }}</p>
+                                <!-- Loop through the audio files -->
+                                {% for item in audio_files %}
+                                <div class="bg-white dark:bg-neutral-700 shadow-md rounded-lg p-6 mb-4">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center">
+                                            <img src="https://img.icons8.com/ios/50/000000/audio-wave.png" class="w-12 h-12"
+                                                alt="audio icon">
+                                            <div class="ml-4">
+                                                <h2 class="text-lg font-semibold text-gray-900 dark:text-neutral-200">{{ item['audio_name'] }}</h2>
+                                                <p class="text-sm text-gray-500 dark:text-neutral-400">{{ item['audio_file'] }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center space-x-4">
+                                            <a href="/convert/{{ item['id'] }}" class="text-blue-600 dark:text-blue-400 hover:underline font-semibold">Convert</a>
+                                            <a href="/delete/{{ item['id'] }}" class="text-red-600 dark:text-red-400 hover:underline font-semibold">
+                                                Delete
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                                <!-- End of audio files loop -->
                             </div>
-                        </div>
-                        <div class="flex items-center space-x-4">
-                            <a href="/convert/{{ item['id'] }}" class="text-blue-600 dark:text-blue-400 hover:underline font-semibold">Convert</a>
-                            <a href="/delete/{{ item['id'] }}" class="text-red-600 dark:text-red-400 hover:underline font-semibold">
-                                Delete
-                            </a>
+                            <!-- End of Audio Files Section -->
+
+                            <!-- Attractive Image Section -->
+                            <div class="hidden md:block">
+                                <img src="https://cdn.dribbble.com/users/250315/screenshots/11437914/media/24511d2620645ea2e8bdf6c79a2dbcd5.gif" alt="Attractive Image" class="rounded-lg shadow-lg object-cover w-full h-full">
+                            </div>
+                            <!-- End of Image Section -->
                         </div>
                     </div>
                 </div>
-                {% endfor %}
-                <!-- End of audio files loop -->
             </div>
-            <!-- End of Audio Files Section -->
-
-            <!-- Attractive Image Section -->
-            <div class="hidden md:block">
-                <img src="https://cdn.dribbble.com/users/250315/screenshots/11437914/media/24511d2620645ea2e8bdf6c79a2dbcd5.gif" alt="Attractive Image" class="rounded-lg shadow-lg object-cover w-full h-full">
-            </div>
-            <!-- End of Image Section -->
         </div>
-    </div>
-
 </body>
 
 </html>

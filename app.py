@@ -116,7 +116,7 @@ def register():
             if len(email) < 11 or '@' not in email:
                 errors.append("Email is invalid")
             if len(pwd) < 6:
-                errors.append("Password should have more than 6")
+                errors.append("Password should be 6 or more chars")
             if pwd != cpwd:
                 errors.append("passwords do not match")
             if len(errors) == 0:
