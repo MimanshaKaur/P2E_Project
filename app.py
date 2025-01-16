@@ -80,7 +80,7 @@ def login():
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
-        print("LOGGIN IN",email, password)
+        print("LOGGING IN",email, password)
         if password and email:
             if len(email) < 11 or '@' not in email:
                 errors['email'] = 'Email is Invalid'
@@ -90,7 +90,7 @@ def login():
                     print("user account found", user)
                     if user.password == password:
                         create_login_session(user)
-                        flash('Login Successfull', "success")
+                        flash('Login Successful', "success")
                         return redirect('/')
                     else:
                         errors['password'] = 'Password is invalid'
