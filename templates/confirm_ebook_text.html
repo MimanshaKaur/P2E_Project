@@ -44,12 +44,44 @@
                         </audio>
                         </div>
                         <!-- content -->
-                        <form method="post">
+                        <form method="post" action="/preview" target="_blank">
                             <input type="hidden" name="id" value="{{ id }}">
-                            <textarea style="color: black; padding: 5px;" name="text" id="text" rows="50" cols="100">{{content }}</textarea>
-                            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                                Confirm Ebook Creation
-                            </button>
+                            <!-- Input for Author Name -->
+                            <label for="author_name" class="block text-white font-bold mb-2">Author's Name:</label>
+                            <input
+                                type="text"
+                                id="author_name"
+                                name="author_name"
+                                value="{{ audio.author_name }}"
+                                class="w-full px-3 py-2 mb-5 text-black border rounded-md focus:outline-none focus:ring focus:ring-indigo-400" 
+                                placeholder="Enter Author's Name"
+                                required
+                            >
+                            <!-- Textarea for Transcription Content -->
+                            <label for="text" class="block text-white font-bold mb-2">Edit Transcription:</label>
+                            <textarea
+                                name="text"
+                                id="text"
+                                rows="20"
+                                class="w-full border rounded-md focus:outline-none focus:ring focus:ring-indigo-400"
+                                style="color: black; padding: 10px;"
+                            >{{ content }}</textarea>
+                            <!-- Buttons for Preview and Confirm -->
+                            <div class="flex space-x-4 mt-5">
+                                <!-- Preview Button -->
+                                <button
+                                    type="submit"
+                                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                    Preview eBook
+                                </button>
+                                <!-- Confirm and Download Button -->
+                                <button
+                                    type="submit"
+                                    formaction="/confirm"
+                                    class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                                    Confirm and Download
+                                </button>
+                            </div>
                         </form>
                     </center>
                 </div>

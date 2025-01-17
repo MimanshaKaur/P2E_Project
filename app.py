@@ -23,6 +23,7 @@ class AudioUpload(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     audio_name = db.Column(db.String(80), nullable=False)
     audio_file = db.Column(db.String(120), nullable=False)
+    author_name = db.Column(db.String(120), nullable=True)
     is_converted = db.Column(db.Boolean, default=False)
     created_on = db.Column(db.DateTime, default=datetime.now)
 
@@ -58,7 +59,7 @@ def destroy_login_session():
 '''
 to create the project database, open terminal
 - type python and press enter
-- type 
+- type
     from app import app, db
     with app.app_context():
         db.create_all()
@@ -144,16 +145,17 @@ def upload():
 
     if request.method == 'POST':
         audio_name = request.form.get('audio_name')
+        author_name = request.form.get('author_name')
         audio_file = request.files.get('audio_file')
 
-        if not audio_name or not audio_file:
+        if not audio_name or not author_name or not audio_file:
             flash('Please fill all the fields', 'warning')
             return render_template('upload.html')  # Stay on the upload page
 
         # Save the file and add it to the database
         filename = secure_filename(audio_file.filename)
         audio_file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        audio = AudioUpload(audio_name=audio_name, audio_file=filename)
+        audio = AudioUpload(audio_name=audio_name, author_name=author_name, audio_file=filename)
         db.session.add(audio)
         db.session.commit()
 
@@ -171,20 +173,73 @@ def convert():
     audio_files = AudioUpload.query.all()
     return render_template('list.html', audio_files=audio_files)
 
-@app.route('/convert/<int:id>', methods=['GET','POST'])
+@app.route('/preview', methods=['POST'])
+def preview_pdf():
+    # Fetch form data
+    id = request.form.get('id')
+    author_name = request.form.get('author_name')
+    edited_text = request.form.get('text')
+    audio = AudioUpload.query.get(id)
+
+    # Generate a temporary preview PDF
+    preview_path = generate_ebook(
+        edited_text,
+        audio.audio_file,
+        author_name=author_name,
+        is_preview=True
+    )
+
+    # Serve the preview PDF
+    return redirect(f"/static/previews/{os.path.basename(preview_path)}")
+
+
+@app.route('/confirm', methods=['POST'])
+def confirm_pdf():
+    # Fetch form data
+    id = request.form.get('id')
+    author_name = request.form.get('author_name')
+    edited_text = request.form.get('text')
+    audio = AudioUpload.query.get(id)
+
+    # Generate and save the final PDF
+    final_path = generate_ebook(
+        edited_text,
+        audio.audio_file,
+        author_name=author_name,
+        is_preview=False
+    )
+
+    # Update database and mark audio as converted
+    audio.is_converted = True
+    db.session.commit()
+
+    # Serve the final PDF
+    flash("Your eBook has been created successfully!", "success")
+    return redirect(f"/static/output/{os.path.basename(final_path)}")
+
+@app.route('/convert/<int:id>', methods=['GET', 'POST'])
 def convert_audio(id):
     audio = AudioUpload.query.get(id)
+
     if request.method == 'POST':
-        new_text = request.form.get('text')
-        id = request.form.get('id')
-        file_path = generate_ebook(new_text, audio.audio_file)
+        # Get the edited text from the form
+        edited_text = request.form.get('text')
+        author_name = audio.author_name  # Fetch the author's name from the database
+
+        # Generate the PDF with the edited text
+        file_path = generate_ebook(edited_text, audio.audio_file, author_name=author_name)
+
+        # Mark the audio as converted and save changes
         audio.is_converted = True
         db.session.commit()
+
+        # Store the PDF file path in the session
         session['pdf_file'] = file_path
-        flash('Audio file converted successfully', 'success')
+        flash('Your eBook has been created successfully!', 'success')
         return redirect('/ebooks')
-    content = generate_text_from_audio("static/uploads/"+audio.audio_file)
-    flash('Audio file converted successfully', 'success')
+
+    # Generate the transcription for the first time
+    content = generate_text_from_audio(f"static/uploads/{audio.audio_file}")
     return render_template('confirm_ebook_text.html', audio=audio, content=content, id=id)
 
 @app.route('/delete/<int:id>', methods=['GET','POST'])
