@@ -215,7 +215,7 @@ def confirm_pdf():
 
     # Serve the final PDF
     flash("Your eBook has been created successfully!", "success")
-    return redirect(f"/static/output/{os.path.basename(final_path)}")
+    return redirect("/ebooks")
 
 @app.route('/convert/<int:id>', methods=['GET', 'POST'])
 def convert_audio(id):

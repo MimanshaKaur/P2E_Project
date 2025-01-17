@@ -47,11 +47,6 @@ def generate_ebook(text, audio_file, author_name=None, is_preview=False):
     if author_name:
         pdf.cell(0, 10, f"Author: {author_name}", ln=True, align="C")
 
-    # Add custom message
-    pdf.ln(20)
-    pdf.set_font("Arial", size=14)
-    pdf.cell(0, 10, "Transcription starts on the next page.", ln=True, align="C")
-
     # Add transcription page
     pdf.add_page()
     draw_black_margin()
