@@ -150,17 +150,23 @@ def upload():
 
         if not audio_name or not author_name or not audio_file:
             flash('Please fill all the fields', 'warning')
-            return render_template('upload.html')  # Stay on the upload page
+            return render_template('upload.html')
+
+        # Backend validation for file type
+        if not audio_file.filename.lower().endswith('.mp3'):
+            flash('Invalid file type. Please upload an MP3 file.', 'danger')
+            return render_template('upload.html')
 
         # Save the file and add it to the database
         filename = secure_filename(audio_file.filename)
         audio_file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
         audio = AudioUpload(audio_name=audio_name, author_name=author_name, audio_file=filename)
         db.session.add(audio)
         db.session.commit()
 
         flash('Audio file uploaded successfully', 'success')
-        return redirect(url_for('convert'))  # Redirect to the list page after success
+        return redirect(url_for('convert'))
 
     return render_template('upload.html')
 
