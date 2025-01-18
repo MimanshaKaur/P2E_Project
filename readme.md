@@ -1,5 +1,6 @@
 # Podcast to Ebook
 
+- python should be installed
 
 - step 1: install requirements
 ```bash
@@ -8,7 +9,7 @@ pip install -r requirements.txt
 
 - step 2: run the script
 ```bash
-python main.py
+python app.py
 ```
 # Project Screenshot : 
 ![Screenshot 2024-11-04 163358](https://github.com/user-attachments/assets/cc7e70be-2aeb-40f2-b177-80e5d3bd7515)
