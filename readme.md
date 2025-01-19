@@ -1,6 +1,6 @@
 # Podcast to Ebook
 
--  step 1: python should be installed([text](../../../../Downloads/python-3.12.8-amd64.exe))
+- step 1: python should be installed([text](../../../../Downloads/python-3.12.8-amd64.exe))
 
 - step 2: install requirements
 ```bash
