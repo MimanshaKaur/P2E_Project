@@ -2,7 +2,7 @@ import os
 import wave
 import json
 from vosk import Model, KaldiRecognizer
-from pydub import AudioSegment  
+from pydub import AudioSegment
 from fpdf import FPDF
 
 class CustomPDF(FPDF):
